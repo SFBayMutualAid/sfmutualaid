@@ -35,7 +35,6 @@
   .hero h1 .o { color: var(--orange); }
   .hero-row { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; margin-top: 28px; }
   .hero p { font-size: 21px; font-weight: 500; max-width: 600px; margin: 0; }
-  .stamp { width: 150px; height: 150px; border-radius: 50%; background: var(--orange); color: var(--ink); display: grid; place-items: center; text-align: center; font-family: Anton, sans-serif; text-transform: uppercase; font-size: 20px; line-height: 1; transform: rotate(-12deg); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
 
   /* Project overview cards */
   .projects { padding: 24px 0 88px; }
@@ -64,15 +63,15 @@
   .tile.dark { background: var(--ink); color: var(--paper); box-shadow: 8px 8px 0 var(--orange); }
 
   /* Project 02: Crews */
-  .crews { padding: 24px 0 88px; scroll-margin-top: 16px; }
+  .crews { padding: 88px 0; background: var(--ink); color: var(--paper); scroll-margin-top: 0; }
   .crews-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
   .crews .tagline { font-family: Anton, sans-serif; text-transform: uppercase; font-size: clamp(26px, 3vw, 36px); line-height: 1.3; margin: 0 0 20px; }
-  .crews .tagline span { background: var(--orange); padding: 0 .12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-  .crews p { font-size: 18px; font-weight: 500; margin: 0 0 16px; }
+  .crews .tagline span { background: var(--orange); color: var(--ink); padding: 0 .12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .crews p { font-size: 18px; font-weight: 500; margin: 0 0 16px; color: #ddd6ca; }
   .table-art { width: 100%; height: auto; display: block; }
   .table-caption { text-align: center; font-family: Anton, sans-serif; text-transform: uppercase; font-size: 22px; margin-top: 8px; }
 
-  .find { margin-top: 56px; background: var(--orange); border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); padding: 32px; }
+  .find { margin-top: 56px; background: var(--orange); border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--paper); padding: 32px; }
   .find-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 20px; }
   .find .display { font-size: clamp(36px, 4.4vw, 56px); }
   .find-head p { margin: 0; font-weight: 700; }
@@ -109,7 +108,6 @@
   @media (max-width: 600px) {
     nav a:not(.keep) { display: none; }
     .hero-row { grid-template-columns: 1fr; }
-    .stamp { width: 120px; height: 120px; font-size: 16px; }
     .actions-grid { grid-template-columns: 1fr; }
     .tile { min-height: 0; }
     .find { padding: 24px; }
@@ -130,7 +128,6 @@
     <h1 class="display">Neighbors<br>helping<br><span class="o">neighbors.</span></h1>
     <div class="hero-row">
       <p>A collective of Bay Area residents and organizers meeting the needs of our local community. Two ways in: get or give direct support, or join a crew of neighbors.</p>
-      <div class="stamp">Mutual aid<br>for SF Bay<br>Area residents</div>
     </div>
   </div>
 </section>
@@ -169,16 +166,16 @@
         <p>Each crew picks its own focus, whether that's political, social, artistic, or educational. Connection and community aren't just a means to an end here. They're the point.</p>      </div>
       <div>
         <svg class="table-art" viewBox="0 0 360 300" role="img" aria-label="Drawing of a round kitchen table with eight seats">
-          <circle cx="180" cy="150" r="74" fill="#ff5a1f" stroke="#111" stroke-width="4"/>
+          <circle cx="180" cy="150" r="74" fill="#ff5a1f" stroke="#f2ede4" stroke-width="4"/>
           <circle cx="180" cy="150" r="46" fill="none" stroke="#111" stroke-width="3" stroke-dasharray="6 8"/>
-          <g fill="#111">
+          <g fill="#f2ede4">
             <circle cx="180" cy="40" r="20"/><circle cx="180" cy="260" r="20"/>
             <circle cx="70" cy="150" r="20"/><circle cx="290" cy="150" r="20"/>
             <circle cx="102" cy="72" r="20"/><circle cx="258" cy="72" r="20"/>
             <circle cx="102" cy="228" r="20"/>
           </g>
-          <circle cx="258" cy="228" r="18" fill="#f2ede4" stroke="#111" stroke-width="4" stroke-dasharray="7 6"/>
-          <text x="258" y="236" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="22" fill="#111">+</text>
+          <circle cx="258" cy="228" r="18" fill="#111" stroke="#f2ede4" stroke-width="4" stroke-dasharray="7 6"/>
+          <text x="258" y="236" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="22" fill="#f2ede4">+</text>
         </svg>
         <div class="table-caption">3–8 people. One table. There's a seat for you.</div>
       </div>
@@ -220,7 +217,7 @@
 <footer>
   <div class="wrap">
     <span>SF Bay Area Mutual Aid</span>
-    <span><a href="https://sfcrews.org">sfcrews.org</a> · <a href="mailto:sfbayareamutualaid@gmail.com">sfbayareamutualaid@gmail.com</a> · <a href="https://www.instagram.com/sfmutualaid/">@sfmutualaid</a></span>
+    <span><a href="mailto:sfbayareamutualaid@gmail.com">sfbayareamutualaid@gmail.com</a> · <a href="https://www.instagram.com/sfmutualaid/">@sfmutualaid</a></span>
   </div>
 </footer>
 
