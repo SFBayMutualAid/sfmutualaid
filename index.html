@@ -102,7 +102,6 @@
     .projects { padding-bottom: 96px; }
   }
   @media (max-width: 600px) {
-    nav a:not(.keep) { display: none; }
     .hero-row { grid-template-columns: 1fr; }
     .actions-grid, .groups { grid-template-columns: 1fr; }
     .tile { min-height: 0; }
@@ -112,13 +111,15 @@
     .section-lead { margin-bottom: 40px; }
   }
 </style>
+<link rel="stylesheet" href="/css/nav.css">
 </head>
 <body>
 
 <header>
   <div class="wrap">
     <a class="logo" href="/">SF Bay <b>Mutual Aid</b></a>
-    <nav><a href="/">Home</a><a class="keep" href="/about">About</a><a class="keep" href="#crews">Crews</a><a href="/resources">Resources</a><a href="https://www.instagram.com/sfmutualaid/">Instagram</a></nav>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <nav id="site-nav"><a class="on" href="/">Home</a><a href="/about">About</a><a href="/resources">Resources</a><a href="https://www.instagram.com/sfmutualaid/">Instagram</a></nav>
   </div>
 </header>
 
@@ -199,5 +200,6 @@
 </footer>
 
 <script src="/js/subscribe.js"></script>
+<script src="/js/nav.js"></script>
 </body>
 </html>
