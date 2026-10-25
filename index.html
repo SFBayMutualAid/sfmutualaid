@@ -52,43 +52,29 @@
   .section-head .num { font-family: Anton, sans-serif; font-size: clamp(72px, 10vw, 128px); line-height: .8; color: var(--orange); }
   .section-head .display { font-size: clamp(44px, 8vw, 104px); min-width: 0; overflow-wrap: anywhere; }
   .project-card .display { overflow-wrap: anywhere; }
-  .section-lead { font-size: 20px; font-weight: 500; max-width: 720px; margin: 0 0 36px; }
+  .section-lead { font-size: 20px; font-weight: 500; max-width: 720px; margin: 0 0 28px; }
+  .aid-list { list-style: none; margin: 0 0 40px; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .aid-list li { position: relative; padding-left: 22px; font-size: 16px; line-height: 1.5; }
+  .aid-list li::before { content: ""; position: absolute; left: 0; top: 6px; width: 11px; height: 11px; background: var(--orange); border: 2px solid var(--ink); }
+  .aid-list strong { display: block; font-size: 17px; }
 
   /* Project 01: mutual aid */
   .aid { padding: 0 0 88px; scroll-margin-top: 16px; }
   .actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .tile { display: flex; flex-direction: column; justify-content: space-between; min-height: 230px; padding: 24px; border: 3px solid var(--ink); background: var(--white); text-decoration: none; box-shadow: 8px 8px 0 var(--ink); transition: transform .12s, box-shadow .12s; }
+  .tile { display: flex; flex-direction: column; justify-content: space-between; min-height: 170px; padding: 24px; border: 3px solid var(--ink); background: var(--white); text-decoration: none; box-shadow: 8px 8px 0 var(--ink); transition: transform .12s, box-shadow .12s; }
   .tile:hover { transform: translate(-3px, -3px); box-shadow: 11px 11px 0 var(--ink); }
   .tile:active { transform: translate(4px, 4px); box-shadow: 4px 4px 0 var(--ink); }
   .tile .display { font-size: 40px; }
   .tile p { margin: 12px 0 0; font-weight: 500; }
-  .tile .arrow { font-family: Anton, sans-serif; font-size: 34px; align-self: flex-end; }
   .tile.hot { background: var(--orange); }
   .tile.dark { background: var(--ink); color: var(--paper); box-shadow: 8px 8px 0 var(--orange); }
 
-  /* Black band with zigzag (sawtooth) edges instead of straight rules */
-  .about { position: relative; background: var(--ink); color: var(--paper); padding: 72px 0; margin: 14px 0; }
-  .about::before, .about::after { content: ""; position: absolute; left: 0; right: 0; height: 14px; background-repeat: repeat-x; background-size: 28px 14px; }
-  .about::before { top: -14px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14'%3E%3Cpath d='M0 14 L14 0 L28 14Z' fill='%23111'/%3E%3C/svg%3E"); }
-  .about::after { bottom: -14px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14'%3E%3Cpath d='M0 0 L14 14 L28 0Z' fill='%23111'/%3E%3C/svg%3E"); }
-  .about .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-  .about-left .display { font-size: clamp(48px, 6vw, 84px); }
-  .about-left .display span { color: var(--orange); }
-  .about-left p { font-size: 19px; font-weight: 500; margin-top: 24px; color: #d9d3c8; }
-  .about-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; }
-  .about-list li { background: #1e1e1e; padding: 22px 24px; display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: baseline; box-shadow: 6px 6px 0 var(--orange); }
-  .about-list .n { font-family: Anton, sans-serif; font-size: 44px; color: var(--orange); line-height: 1; }
-  .about-list strong { display: block; font-size: 19px; color: var(--paper); }
-  .about-list li div { color: #cfc8bc; }
-
   /* Project 02: Crews */
-  .crews { padding: 104px 0 88px; scroll-margin-top: 16px; }
+  .crews { padding: 24px 0 88px; scroll-margin-top: 16px; }
   .crews-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
   .crews .tagline { font-family: Anton, sans-serif; text-transform: uppercase; font-size: clamp(26px, 3vw, 36px); line-height: 1.3; margin: 0 0 20px; }
   .crews .tagline span { background: var(--orange); padding: 0 .12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
   .crews p { font-size: 18px; font-weight: 500; margin: 0 0 16px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; }
-  .chips li { border: 3px solid var(--ink); background: var(--white); padding: 6px 14px; font-weight: 700; font-size: 15px; box-shadow: 3px 3px 0 var(--ink); }
   .table-art { width: 100%; height: auto; display: block; }
   .table-caption { text-align: center; font-family: Anton, sans-serif; text-transform: uppercase; font-size: 22px; margin-top: 8px; }
 
@@ -101,7 +87,6 @@
   .region:hover { background: var(--paper); color: var(--ink); }
   .region strong { font-family: Anton, sans-serif; text-transform: uppercase; font-size: 24px; font-weight: 400; line-height: 1.05; }
   .region small { display: block; font-size: 13px; opacity: .8; margin-top: 4px; }
-  .region .arrow { font-family: Anton, sans-serif; font-size: 28px; }
   .find .more { display: inline-block; margin-top: 18px; font-weight: 700; }
 
   .join { padding: 40px 0 88px; }
@@ -123,7 +108,8 @@
 
   @media (max-width: 960px) {
     .actions-grid { grid-template-columns: 1fr 1fr; }
-    .projects-grid, .about .wrap, .crews-grid, .join .wrap { grid-template-columns: 1fr; gap: 32px; }
+    .projects-grid, .crews-grid, .join .wrap { grid-template-columns: 1fr; gap: 32px; }
+    .aid-list { grid-template-columns: 1fr 1fr; }
     .regions { grid-template-columns: 1fr; }
     .table-art { max-width: 360px; margin: 0 auto; }
   }
@@ -131,8 +117,9 @@
     nav a:not(.keep) { display: none; }
     .hero-row { grid-template-columns: 1fr; }
     .stamp { width: 120px; height: 120px; font-size: 16px; }
-    .actions-grid { grid-template-columns: 1fr; }
-    .tile { min-height: 180px; }
+    .actions-grid, .aid-list { grid-template-columns: 1fr; }
+    .aid-list { gap: 16px; }
+    .tile { min-height: 0; }
     .project-card { grid-template-columns: 1fr; gap: 8px; }
     .find { padding: 24px; }
   }
@@ -161,11 +148,11 @@
   <div class="wrap projects-grid">
     <a class="project-card" href="#aid">
       <span class="num">01</span>
-      <div><h2 class="display">Volunteer-Matching</h2><p>Request support or give it: funds for necessities, deliveries, errands, and connections to resources.</p><span class="go">Get or give help ↓</span></div>
+      <div><h2 class="display">Volunteer-Matching</h2><p>Request support or give it: funds for necessities, deliveries, errands, and connections to resources.</p><span class="go">Get or give help</span></div>
     </a>
     <a class="project-card dark" href="#crews">
       <span class="num">02</span>
-      <div><h2 class="display">Crews</h2><p>Small groups of three to eight neighbors who meet, collaborate, and look out for each other.</p><span class="go">Find your crew ↓</span></div>
+      <div><h2 class="display">Crews</h2><p>Small groups of three to eight neighbors who meet, collaborate, and look out for each other.</p><span class="go">Find your crew</span></div>
     </a>
   </div>
 </section>
@@ -174,27 +161,18 @@
   <div class="wrap">
     <div class="section-head"><span class="num">01</span><h2 class="display">Volunteer-Matching</h2></div>
     <p class="section-lead">We match neighbors who need help with neighbors who can give it, and send funds directly to people in need. Ask for help. Offer help. Both are welcome.</p>
-    <div class="actions-grid">
-      <a class="tile hot" href="https://airtable.com/shrIg2MqUXnhKze3U"><div><h3 class="display">Request support</h3><p>Rent, utilities, groceries, medication, errands.</p></div><span class="arrow">→</span></a>
-      <a class="tile" href="https://airtable.com/shrkxtwOw5NDUdDPO"><div><h3 class="display">Pedir apoyo</h3><p>Formulario en español.</p></div><span class="arrow">→</span></a>
-      <a class="tile" href="https://hcb.hackclub.com/donations/start/sf-bay-area-mutual-aid"><div><h3 class="display">Donate</h3><p>Tax-deductible. Goes to neighbors in need.</p></div><span class="arrow">→</span></a>
-      <a class="tile dark" href="https://airtable.com/app8pXpYlcrsJFNYl/shr0rwMRi0mnD1N9K"><div><h3 class="display">Offer support</h3><p>Time, skills, rides, resources.</p></div><span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
-
-<section class="about">
-  <div class="wrap">
-    <div class="about-left">
-      <h2 class="display">What <span>we do</span></h2>
-      <p>Bay Area residents and organizers coming together to meet the needs of our local community, directly, neighbor to neighbor.</p>
-    </div>
-    <ul class="about-list">
-      <li><span class="n">01</span><div><strong>Funds for necessities</strong>Rent, utilities, medications, and other essentials.</div></li>
-      <li><span class="n">02</span><div><strong>Deliveries &amp; errands</strong>Groceries, medicine, and supplies for elderly, immunocompromised, and high-risk folks.</div></li>
-      <li><span class="n">03</span><div><strong>Connections</strong>Linking people with relevant resources in their communities.</div></li>
-      <li><span class="n">04</span><div><strong>Tech support</strong>Delivery apps, video calls, and more.</div></li>
+    <ul class="aid-list">
+      <li><strong>Funds for necessities</strong>Rent, utilities, medications, and other essentials.</li>
+      <li><strong>Deliveries &amp; errands</strong>Groceries, medicine, and supplies for elderly, immunocompromised, and high-risk folks.</li>
+      <li><strong>Connections</strong>Linking people with relevant resources in their communities.</li>
+      <li><strong>Tech support</strong>Delivery apps, video calls, and more.</li>
     </ul>
+    <div class="actions-grid">
+      <a class="tile hot" href="https://airtable.com/shrIg2MqUXnhKze3U"><div><h3 class="display">Request support</h3><p>Rent, utilities, groceries, medication, errands.</p></div></a>
+      <a class="tile" href="https://airtable.com/shrkxtwOw5NDUdDPO"><div><h3 class="display">Pedir apoyo</h3><p>Formulario en español.</p></div></a>
+      <a class="tile" href="https://hcb.hackclub.com/donations/start/sf-bay-area-mutual-aid"><div><h3 class="display">Donate</h3><p>Tax-deductible. Goes to neighbors in need.</p></div></a>
+      <a class="tile dark" href="https://airtable.com/app8pXpYlcrsJFNYl/shr0rwMRi0mnD1N9K"><div><h3 class="display">Offer support</h3><p>Time, skills, rides, resources.</p></div></a>
+    </div>
   </div>
 </section>
 
@@ -205,11 +183,7 @@
       <div>
         <p class="tagline"><span>Helping neighbors find each other, collaborate, and build deep community.</span></p>
         <p>A crew is a small group of three to eight neighbors: small enough to fit around one kitchen table. Small groups are easier to schedule, you really get to know each other, and everyone is missed when they're not there.</p>
-        <p>Each crew picks its own focus, whether that's political, social, artistic, or educational. Connection and community aren't just a means to an end here. They're the point.</p>
-        <ul class="chips" aria-label="What crews do together">
-          <li>Share meals</li><li>Share rides</li><li>Talk it through</li><li>Decide together</li><li>Show up for each other</li>
-        </ul>
-      </div>
+        <p>Each crew picks its own focus, whether that's political, social, artistic, or educational. Connection and community aren't just a means to an end here. They're the point.</p>      </div>
       <div>
         <svg class="table-art" viewBox="0 0 360 300" role="img" aria-label="Drawing of a round kitchen table with eight seats">
           <circle cx="180" cy="150" r="74" fill="#ff5a1f" stroke="#111" stroke-width="4"/>
@@ -233,9 +207,9 @@
         <p>Join the Signal group for your area to meet neighbors and get started.</p>
       </div>
       <div class="regions">
-        <a class="region" href="https://signal.group/#CjQKIPAvAOeVJhJ0PhQmChW08fU3XXBHwiU9TJ5tVeoyPLzQEhAhEdYn8zk_En64IBDgo-7v"><span><strong>Richmond &amp; Sunset</strong><small>Signal group</small></span><span class="arrow">→</span></a>
-        <a class="region" href="https://signal.group/#CjQKID8h2rFbCCkj-VaQ_N7fvIQSapVGAATLsLoYdn5pnjUeEhBoOuufyqvKEEKMUCEfzDnD"><span><strong>Rest of SF</strong><small>Signal group</small></span><span class="arrow">→</span></a>
-        <a class="region" href="https://signal.group/#CjQKIG9NbFQgLQMemM0LdsdJsChAJy9FaeBnoSL8iP1YiGoXEhBnwl7R2LFAYU-lHR1bGwDn"><span><strong>Oakland &amp; Berkeley</strong><small>Signal group</small></span><span class="arrow">→</span></a>
+        <a class="region" href="https://signal.group/#CjQKIPAvAOeVJhJ0PhQmChW08fU3XXBHwiU9TJ5tVeoyPLzQEhAhEdYn8zk_En64IBDgo-7v"><span><strong>Richmond &amp; Sunset</strong><small>Signal group</small></span></a>
+        <a class="region" href="https://signal.group/#CjQKID8h2rFbCCkj-VaQ_N7fvIQSapVGAATLsLoYdn5pnjUeEhBoOuufyqvKEEKMUCEfzDnD"><span><strong>Rest of SF</strong><small>Signal group</small></span></a>
+        <a class="region" href="https://signal.group/#CjQKIG9NbFQgLQMemM0LdsdJsChAJy9FaeBnoSL8iP1YiGoXEhBnwl7R2LFAYU-lHR1bGwDn"><span><strong>Oakland &amp; Berkeley</strong><small>Signal group</small></span></a>
       </div>
       <a class="more" href="https://sfcrews.org">Learn more at sfcrews.org →</a>
     </div>
