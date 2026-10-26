@@ -13,7 +13,7 @@ nav { display: flex; gap: 4px; }
 nav a { text-decoration: none; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: .06em; padding: 8px 12px; border: 2px solid transparent; }
 nav a:hover { border-color: var(--ink); }
 
-.page-hero { padding: 96px 0 72px; }
+.page-hero { padding: 84px 0; }
 .page-hero h1 { font-size: clamp(56px, 10vw, 150px); overflow-wrap: anywhere; }
 .page-hero .o { color: var(--orange); }
 
@@ -70,7 +70,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 footer a { text-decoration: none; color: var(--orange); }
 
 @media (max-width: 600px) {
-  .page-hero { padding: 56px 0 48px; }
+  .page-hero { padding: 52px 0; }
   .page-body { padding: 64px 0 80px; }
   .prose p { font-size: 18px; }
   .prose h2 { margin-top: 56px; }
