@@ -23,7 +23,7 @@ nav a:hover { border-color: var(--ink); }
 .prose p { font-size: 19px; margin: 0 0 22px; }
 .prose a { text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .prose a:hover { color: var(--orange); }
-.prose h2 { font-size: clamp(36px, 5vw, 56px); margin: 72px 0 24px; overflow-wrap: anywhere; }
+.prose h2 { font-size: clamp(25px, 3.5vw, 39px); margin: 72px 0 24px; overflow-wrap: anywhere; }
 .prose p.numbered { padding-left: 20px; border-left: 4px solid var(--orange); }
 .prose p.kr { margin-top: 64px; font-weight: 500; }
 
