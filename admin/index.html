@@ -109,8 +109,8 @@
 
   <div class="panes">
     <section class="pane">
-      <div class="pane-head"><span>HTML</span><span class="grow"></span><span id="dirty-flag"></span></div>
-      <div class="editor"><textarea id="code" spellcheck="false" aria-label="Page HTML"></textarea></div>
+      <div class="pane-head"><span>Page sections (HTML)</span><span class="grow"></span><span id="dirty-flag"></span></div>
+      <div class="editor"><textarea id="code" spellcheck="false" aria-label="Page sections HTML"></textarea></div>
     </section>
     <section class="pane">
       <div class="pane-head">
@@ -135,7 +135,7 @@
 <script>
 (function () {
   var $ = function (id) { return document.getElementById(id); };
-  var state = { path: null, sha: null, original: "", pages: [] };
+  var state = { path: null, sha: null, original: "", prefix: "", suffix: "", pages: [] };
   var editor = null;
   var previewTimer = null;
 
@@ -165,6 +165,17 @@
   }
   function isDirty() { return state.path !== null && getCode() !== state.original; }
 
+  // The editor shows only the page's sections: everything after </header> and before <footer>.
+  // The head, header and footer are kept aside and put back for the preview and on save.
+  function splitPage(html) {
+    var start = html.indexOf("</header>");
+    var end = html.lastIndexOf("<footer");
+    if (start === -1 || end === -1 || end < start) return { prefix: "", body: html, suffix: "" };
+    start += "</header>".length;
+    return { prefix: html.slice(0, start), body: html.slice(start, end), suffix: html.slice(end) };
+  }
+  function fullPage() { return state.prefix + getCode() + state.suffix; }
+
   function updateDirty() {
     var dirty = isDirty();
     $("save").disabled = !dirty;
@@ -174,7 +185,7 @@
 
   // Render the HTML in a sandboxed frame; <base> makes /css, /js and /images load from this site.
   function renderPreview() {
-    var html = getCode();
+    var html = fullPage();
     var base = '<base href="' + location.origin + '/" target="_blank">';
     html = /<head[^>]*>/i.test(html) ? html.replace(/<head[^>]*>/i, function (m) { return m + base; }) : base + html;
     $("preview").srcdoc = html;
@@ -217,8 +228,10 @@
     setStatus("Opening " + path + "…");
     $("save").disabled = true;
     return api("/api/admin/pages?path=" + encodeURIComponent(path)).then(function (page) {
-      state.path = page.path; state.sha = page.sha; state.original = page.html;
-      setCode(page.html);
+      var parts = splitPage(page.html);
+      state.path = page.path; state.sha = page.sha;
+      state.prefix = parts.prefix; state.suffix = parts.suffix; state.original = parts.body;
+      setCode(parts.body);
       $("page").value = page.path;
       var p = state.pages.filter(function (x) { return x.path === page.path; })[0];
       $("view-live").href = p ? p.url : "/";
@@ -235,12 +248,13 @@
     if (!confirm("Publish your changes to " + (p ? p.url : state.path) + " on the live site?")) return;
     $("save").disabled = true;
     setStatus("Saving…");
-    var html = getCode();
+    var body = getCode();
+    var html = fullPage();
     api("/api/admin/pages", {
       method: "PUT",
       body: JSON.stringify({ path: state.path, sha: state.sha, html: html, message: $("message").value }),
     }).then(function (r) {
-      state.sha = r.sha; state.original = html;
+      state.sha = r.sha; state.original = body;
       $("message").value = "";
       updateDirty();
       setStatus("Saved. The live site updates in about a minute.", "ok");
