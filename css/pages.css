@@ -16,7 +16,6 @@ nav a:hover { border-color: var(--ink); }
 .page-hero { padding: 96px 0 72px; }
 .page-hero h1 { font-size: clamp(56px, 10vw, 150px); overflow-wrap: anywhere; }
 .page-hero .o { color: var(--orange); }
-.kicker { display: inline-block; margin: 0 0 24px; padding: 6px 14px; background: var(--ink); color: var(--paper); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; }
 
 .page-body { background: var(--white); padding: 96px 0 128px; }
 .prose { max-width: 780px; }
