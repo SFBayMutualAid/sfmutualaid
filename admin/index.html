@@ -109,7 +109,7 @@
 
   <div class="panes">
     <section class="pane">
-      <div class="pane-head"><span>Page sections (HTML)</span><span class="grow"></span><span id="dirty-flag"></span></div>
+      <div class="pane-head"><span id="code-label">Page sections (HTML)</span><span class="grow"></span><span id="dirty-flag"></span></div>
       <div class="editor"><textarea id="code" spellcheck="false" aria-label="Page sections HTML"></textarea></div>
     </section>
     <section class="pane">
@@ -135,7 +135,9 @@
 <script>
 (function () {
   var $ = function (id) { return document.getElementById(id); };
-  var state = { path: null, sha: null, original: "", prefix: "", suffix: "", pages: [] };
+  // LAYOUT is the dropdown entry for the menu and footer shared by every page.
+  var LAYOUT = "@layout";
+  var state = { path: null, sha: null, original: "", prefix: "", suffix: "", pages: [], commit: null, home: "" };
   var editor = null;
   var previewTimer = null;
 
@@ -174,7 +176,21 @@
     start += "</header>".length;
     return { prefix: html.slice(0, start), body: html.slice(start, end), suffix: html.slice(end) };
   }
-  function fullPage() { return state.prefix + getCode() + state.suffix; }
+  function fullPage() {
+    if (state.path !== LAYOUT) return state.prefix + getCode() + state.suffix;
+    // Preview the menu and footer on the homepage; while the HTML is mid-edit, keep the old ones.
+    var parts = splitLayout(getCode());
+    if (!parts) return state.home;
+    return state.home
+      .replace(/<header>(?:(?!<\/header>)[\s\S])*?id="site-nav"[\s\S]*?<\/header>/, function () { return parts.header; })
+      .replace(/<footer>[\s\S]*?<\/footer>/, function () { return parts.footer; });
+  }
+
+  // The menu & footer editor holds a <header> block followed by a <footer> block, and nothing else.
+  function splitLayout(code) {
+    var m = code.match(/^\s*(<header>[\s\S]*<\/header>)\s*(<footer>[\s\S]*<\/footer>)\s*$/);
+    return m && m[1].indexOf('id="site-nav"') !== -1 ? { header: m[1], footer: m[2] } : null;
+  }
 
   function updateDirty() {
     var dirty = isDirty();
@@ -211,6 +227,10 @@
       state.pages = data.pages;
       var sel = $("page");
       sel.innerHTML = "";
+      var all = document.createElement("option");
+      all.value = LAYOUT;
+      all.textContent = "Menu & footer  (all pages)";
+      sel.appendChild(all);
       data.pages.forEach(function (p) {
         var o = document.createElement("option");
         o.value = p.path;
@@ -218,13 +238,32 @@
         sel.appendChild(o);
       });
       var wanted = decodeURIComponent((location.hash || "").slice(1));
-      var start = data.pages.some(function (p) { return p.path === wanted; }) ? wanted : data.pages[0].path;
+      var start = wanted === LAYOUT || data.pages.some(function (p) { return p.path === wanted; }) ? wanted : data.pages[0].path;
       sel.value = start;
       return openPage(start);
     }).catch(function (e) { setStatus(e.message, "warn"); });
   }
 
+  function openLayout() {
+    setStatus("Opening the menu and footer…");
+    $("save").disabled = true;
+    return api("/api/admin/layout").then(function (data) {
+      state.path = LAYOUT; state.commit = data.commit; state.home = data.home;
+      state.original = data.header + "\n\n" + data.footer + "\n";
+      setCode(state.original);
+      $("page").value = LAYOUT;
+      $("code-label").textContent = "Menu & footer (HTML)";
+      $("view-live").href = "/";
+      history.replaceState(null, "", "#" + encodeURIComponent(LAYOUT));
+      updateDirty();
+      renderPreview();
+      setStatus("Editing the menu and footer. Saving updates them on every page at once; the preview shows the homepage.");
+    }).catch(function (e) { setStatus(e.message, "warn"); });
+  }
+
   function openPage(path) {
+    if (path === LAYOUT) return openLayout();
+    $("code-label").textContent = "Page sections (HTML)";
     setStatus("Opening " + path + "…");
     $("save").disabled = true;
     return api("/api/admin/pages?path=" + encodeURIComponent(path)).then(function (page) {
@@ -242,9 +281,36 @@
     }).catch(function (e) { setStatus(e.message, "warn"); });
   }
 
+  function saveLayout() {
+    var parts = splitLayout(getCode());
+    if (!parts) {
+      setStatus('Keep exactly one <header>…</header> block (with <nav id="site-nav"> inside) followed by one <footer>…</footer> block.', "warn");
+      return;
+    }
+    if (!confirm("Publish the new menu and footer to every page on the live site?")) return;
+    $("save").disabled = true;
+    setStatus("Saving…");
+    var code = getCode();
+    api("/api/admin/layout", {
+      method: "PUT",
+      body: JSON.stringify({ header: parts.header, footer: parts.footer, commit: state.commit, message: $("message").value }),
+    }).then(function (r) {
+      state.commit = r.commit; state.original = code;
+      $("message").value = "";
+      updateDirty();
+      setStatus(r.changed.length
+        ? "Saved to " + r.changed.length + " pages. The live site updates in about a minute."
+        : "Nothing changed on any page.", "ok");
+    }).catch(function (e) {
+      updateDirty();
+      setStatus(e.message, "warn");
+    });
+  }
+
   function save() {
     if (!isDirty()) return;
-    var p = state.pages.filter(function (x) { return x.path === state.path; })[0];
+    if (state.path === LAYOUT) return saveLayout();
+    var p =state.pages.filter(function (x) { return x.path === state.path; })[0];
     if (!confirm("Publish your changes to " + (p ? p.url : state.path) + " on the live site?")) return;
     $("save").disabled = true;
     setStatus("Saving…");
