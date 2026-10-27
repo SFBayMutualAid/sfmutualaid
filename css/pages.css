@@ -78,4 +78,8 @@ footer a { text-decoration: none; color: var(--orange); }
   .link-list span { text-align: left; }
   .cta { padding: 24px; }
   .tile { min-height: 0; }
+  /* Leave room for the hard shadow so each box + shadow sits evenly between the side margins. */
+  .tile, .lesson { margin-right: 8px; }
+  .cta, .video { margin-right: 10px; }
+  .points li { margin-right: 6px; }
 }
