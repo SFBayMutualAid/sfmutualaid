@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#111111">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23ff5a1f' stroke='%23111' stroke-width='2'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Impact,sans-serif' font-size='15' fill='%23111'%3EMA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@1&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root { --paper: #f2ede4; --ink: #111; --orange: #ff5a1f; --white: #fff; }
   * { box-sizing: border-box; }
@@ -31,7 +31,8 @@
   nav a:hover { border-color: var(--ink); }
 
   .hero { padding: 96px 0 72px; }
-  .hero h1 { font-size: clamp(64px, 14vw, 200px); }
+  .hero h1 { font-size: clamp(45px, 9.8vw, 140px); }
+  .hero .motto { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; font-size: clamp(28px, 3.6vw, 48px); line-height: 1.15; max-width: none; margin: 20px 0 0; }
   .hero h1 .o { color: var(--orange); }
   .hero-row { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; margin-top: 40px; }
   .hero p { font-size: 21px; font-weight: 500; max-width: 600px; margin: 0; }
@@ -114,6 +115,7 @@
 <section class="hero">
   <div class="wrap">
     <h1 class="display">Neighbors<br>helping<br><span class="o">neighbors</span></h1>
+    <p class="motto">Because your liberation is bound with mine.</p>
     <div class="hero-row">
       <p>We are a collective of Bay Area residents and organizers meeting the needs of our local community. We currently run two projects: <a href="#aid">Volunteer-Matching</a> and <a href="#crews">Crews</a>.</p>
     </div>
