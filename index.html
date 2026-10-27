@@ -30,7 +30,9 @@
   nav a { text-decoration: none; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: .06em; padding: 8px 12px; border: 2px solid transparent; }
   nav a:hover { border-color: var(--ink); }
 
-  .hero { padding: 96px 0 72px; }
+  /* Fill the screen below the navbar; nav.js sets --header-h to the real header height. */
+  .hero { padding: 64px 0; min-height: calc(100vh - var(--header-h, 73px)); min-height: calc(100svh - var(--header-h, 73px)); display: flex; align-items: center; }
+  .hero .wrap { width: 100%; }
   .hero h1 { font-size: clamp(50px, 10.8vw, 154px); }
   .hero .motto { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; font-size: clamp(34px, 4.3vw, 58px); line-height: 1.15; max-width: none; margin: 20px 0 0; }
   .hero h1 .o { color: var(--orange); }
@@ -95,7 +97,7 @@
     .hero-row { grid-template-columns: 1fr; }
     .actions-grid, .groups { grid-template-columns: 1fr; }
     .tile { min-height: 0; }
-    .hero { padding: 56px 0 48px; }
+    .hero { padding: 48px 0; }
     .aid, .crews, .join { padding: 72px 0; }
     .section-lead { margin-bottom: 40px; }
   }

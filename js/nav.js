@@ -4,6 +4,13 @@
   var btn = header && header.querySelector(".menu-btn");
   if (!btn) return;
 
+  // Expose the header height so full-screen sections can subtract it.
+  function measure() {
+    document.documentElement.style.setProperty("--header-h", header.getBoundingClientRect().height + "px");
+  }
+  measure();
+  window.addEventListener("resize", measure);
+
   function set(open) {
     header.classList.toggle("open", open);
     btn.setAttribute("aria-expanded", open ? "true" : "false");
