@@ -75,6 +75,10 @@
   .crews .tile.hot { box-shadow: 8px 8px 0 var(--paper); }
   .crews .tile.hot:hover { box-shadow: 11px 11px 0 var(--paper); }
   .crews .tile.hot:active { box-shadow: 4px 4px 0 var(--paper); }
+  /* The white box gets a cream shadow. */
+  .crews .tile:not(.hot):not(.paper) { box-shadow: 8px 8px 0 var(--paper); }
+  .crews .tile:not(.hot):not(.paper):hover { box-shadow: 11px 11px 0 var(--paper); }
+  .crews .tile:not(.hot):not(.paper):active { box-shadow: 4px 4px 0 var(--paper); }
   .crews .tile p { color: inherit; font-size: 17px; margin: 12px 0 0; }
 
 
